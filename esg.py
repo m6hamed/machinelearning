@@ -4,6 +4,7 @@ import numpy as np
 import pickle
 import matplotlib.pyplot as plt
 import os
+import joblib
 
 # --- PAGE CONFIGURATION ---
 st.set_page_config(page_title="ESG Revenue Predictor", layout="wide")
@@ -19,10 +20,10 @@ This app loads a pre-trained **Random Forest** model to predict a company's reve
 def load_assets():
     # Load the Pre-trained Model
     try:
-        with open('model.pkl', 'rb') as file:
-            model = pickle.load(file)
+        with open('model.joblib', 'rb') as file:
+            model = joblib.load(file)
     except FileNotFoundError:
-        st.error("Error: 'model.pkl' not found. Please make sure it is in the same folder as this script.")
+        st.error("Error: 'model.joblib' not found.")
         return None, None, None
 
     # Load the Feature Names
